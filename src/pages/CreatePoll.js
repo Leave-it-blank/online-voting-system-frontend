@@ -18,7 +18,6 @@ export default function CreatePoll() {
         const newChoices = choices.filter((choice, choiceIndex) => {
             return choiceIndex !== index
         })
-
         setChoices(newChoices)
     }
 
@@ -30,48 +29,76 @@ export default function CreatePoll() {
 
             return choice
         })
-
         setChoices(newChoices)
     }
+    function validateForm(form) {
+        if(form.title === undefined || title === '') {
+            setErrors([
+                {
+                    message: 'Please enter a title for the poll'
+                }
+            ])
 
-    const updatePollsToLocalStorage = (successData) => {
-        const existingPolls = JSON.parse(localStorage.getItem('polls')) || []
-
-        const updatedPolls = [
-            ...existingPolls,
-            {
-                title,
-                id: successData.pollId
-            }
-        ]
-
-        localStorage.setItem('polls', 
-        JSON.stringify(updatedPolls))
-    }
-
-    const createPoll = async () => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/polls`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                title,
-                choices
-            })
-        })
-
-
-        const data = await response.json()
-
-        if (! response.ok) {
-            setErrors(data)
-
-            return
+            return false;
         }
+        if(form.choices.length < 2) {
+            setErrors([
+                {
+                    message: 'Please enter at least two choices for the poll'
+                }
+            ])
+            return false;
+        } else {
+            form.choices.forEach((choice, index) => {
+                if (choice === '') {
+                    setErrors([
+                        {
+                            message: `Please enter choice #${index + 1}`
+                        }
+                    ])
+                    return false;
+                }
+            })
+        }
+        return true;
+    }
+    const createPoll = async () => {
+        console.log('createPoll')
 
-        setSuccess(data)
-        updatePollsToLocalStorage(data)
+        const validate = validateForm({
+            title: title,
+            choices: choices
+        })
+        if(validate){
+            try{
+                const response = await fetch(`http://localhost:8000/create-poll`, {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                   title: title,
+                    options: choices
+                })
+            })
+    
+    
+            const data = await response.json()
+            console.log(data)
+            if (! response.ok) {
+                setErrors(data)
+                return null;
+            }
+            setSuccess(data)
+          
+           
+        }
+        catch(err){
+            console.log(err)
+        }  }
+        
+
+      
     }
 
     return (
