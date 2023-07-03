@@ -5,16 +5,27 @@ export default function Home() {
     const [polls, setPolls] = useState([])
     
     useEffect(() => {
-        const polls = JSON.parse(
-            localStorage.getItem('polls')
-        ) || []
+        // const polls = JSON.parse(
+        //     localStorage.getItem('polls')
+        // ) || []
+        const polls = [
+            {
+                id:"1",
+                title:"Favourite Language"
+            },
+            {
+                id:"2",
+                title:"Favourite food"
+            }
+        ]
 
         setPolls(polls)
     }, [])
 
+
     return (
         <div className='container mx-auto px-5'>
-            <h1 className='text-5xl text-center my-10'>Welcome to Polar Voting Platform</h1>
+            <h1 className='text-5xl text-center my-10'>Welcome to Voting Platform</h1>
 
             <div className="w-full max-w-3xl mx-auto bg-white shadow">
                     {polls.map(poll => (

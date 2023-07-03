@@ -24,8 +24,8 @@ function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/" element={<Home />} />
-          <Route path='/polls/create' element={CreatePoll} />
-          <Route path='/polls/:poll' element={ViewPoll} />
+          <Route path='/polls/create' element={<CreatePoll />} />
+          <Route path='/polls/:poll' element={<ViewPoll />} />
         </Switch>
       </div>
     </Router>
