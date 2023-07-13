@@ -10,7 +10,7 @@ function RootLayout() {
       const getuser = async () => {
         const token = localStorage.getItem("token");
         if (token) {
-          const data = await fetch("http://localhost:8000/me", {
+          const data = await fetch(`${process.env.REACT_APP_API_URL}/me`, {
             method: "GET",
             headers: {
               Authorization: `Bearer ${token}`,
