@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 export default function PollList() {
   const [polls, setPolls] = useState([]);
-
+  const data = useLoaderData();
   useEffect(() => {
-    const fetchPolls = async () => {
-      const response = await fetch("http://localhost:8000/polls");
-      const { polls } = await response.json();
-      setPolls(polls);
-      console.log(polls);
-      console.log(polls);
-    };
-    fetchPolls(); // call the function
-  }, [setPolls]);
+    setPolls(data);
+  }, [data]);
   return (
     <>
       <div className="container mx-auto   shadow p-5 min-h-[700px] my-10  py-5 rounded-md bg-slate-50">
@@ -59,7 +52,16 @@ export default function PollList() {
 }
 
 export async function loader() {
-  const response = await fetch("http://localhost:8000/polls");
-  const { polls } = await response.json();
-  return polls;
+  try {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/polls`);
+    if (!response.ok) {
+      console.log(response);
+      throw new Error("Something went wrong while fetching the data");
+    }
+    const { polls } = await response.json();
+    return polls;
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
 }

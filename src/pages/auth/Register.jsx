@@ -44,7 +44,7 @@ export default function Register() {
   const handleRegister = async () => {
     console.log("Register");
     try {
-      const data = await fetch("http://localhost:8000/register", {
+      const data = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

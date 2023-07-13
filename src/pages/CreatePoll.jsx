@@ -66,18 +66,21 @@ export default function CreatePoll() {
         return [tag, choice];
       });
       try {
-        const response = await fetch(`http://localhost:8000/create-poll`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({
-            title: title,
-            options: optionsData,
-            user: user,
-          }),
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/create-poll`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({
+              title: title,
+              options: optionsData,
+              user: user,
+            }),
+          }
+        );
 
         const data = await response.json();
         if (data.status === "success") {

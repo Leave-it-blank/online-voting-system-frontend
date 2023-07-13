@@ -13,7 +13,7 @@ function Login() {
   const handleLogin = async () => {
     console.log("Login");
     try {
-      const data = await fetch("http://localhost:8000/login", {
+      const data = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

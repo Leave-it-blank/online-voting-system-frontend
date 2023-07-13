@@ -30,7 +30,7 @@ export default function ViewPoll() {
       const ip = await fetchClientIpAddress();
 
       const data = await fetch(
-        `http://localhost:8000/poll/${poll.pollId}/vote`,
+        `${process.env.REACT_APP_API_URL}/poll/${poll.pollId}/vote`,
         {
           method: "POST",
           headers: {
@@ -62,7 +62,7 @@ export default function ViewPoll() {
     const fetchPoll = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/poll/${poll.pollId}/results`,
+          `${process.env.REACT_APP_API_URL}/poll/${poll.pollId}/results`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -100,7 +100,7 @@ export default function ViewPoll() {
                       <Button
                         onClick={() => {
                           fetch(
-                            `http://localhost:8000/poll/${poll.pollId}/mark-inactive`,
+                            `${process.env.REACT_APP_API_URL}/poll/${poll.pollId}/mark-inactive`,
                             {
                               method: "GET",
                               headers: {
@@ -177,7 +177,9 @@ export default function ViewPoll() {
 export async function loader(params) {
   console.log("poll id: ");
   console.log(params);
-  const response = await fetch("http://localhost:8000/poll/" + params.id);
+  const response = await fetch(
+    `${process.env.REACT_APP_API_URL}/poll/` + params.id
+  );
   const { poll } = await response.json();
 
   return poll;

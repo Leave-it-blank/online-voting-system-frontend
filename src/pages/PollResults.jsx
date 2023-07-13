@@ -54,7 +54,7 @@ export default function PollResult() {
                     <Button
                       onClick={() => {
                         fetch(
-                          `http://localhost:8000/poll/${pollData.poll.pollId}/mark-inactive`,
+                          `${process.env.REACT_APP_API_URL}/poll/${pollData.poll.pollId}/mark-inactive`,
                           {
                             method: "GET",
                             headers: {
@@ -142,7 +142,7 @@ export async function loader(params) {
   //console.log(token);
   try {
     const response = await fetch(
-      "http://localhost:8000/poll/" + params.id + "/final_results",
+      `${process.env.REACT_APP_API_URL}/poll/` + params.id + "/final_results",
       {
         method: "GET",
         headers: {

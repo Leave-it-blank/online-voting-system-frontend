@@ -57,7 +57,18 @@ export default function Home() {
 }
 
 export async function loader() {
-  const response = await fetch("http://localhost:8000/active-polls");
-  const { polls } = await response.json();
-  return polls;
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}/active-polls`
+    );
+    if (!response.ok) {
+      console.log(response);
+      throw new Error("Something went wrong while fetching the data");
+    }
+    const { polls } = await response.json();
+    return polls;
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
 }
