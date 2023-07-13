@@ -108,6 +108,11 @@ function RootLayout() {
             </div>
             <Toaster />
             <Outlet />
+
+            <footer className="text-center text-gray-500 text-xs">
+              <p>&copy; 2023</p>
+              <p>Made by: {"Leaveitblank"}</p>
+            </footer>
           </div>
         </main>
       </>
