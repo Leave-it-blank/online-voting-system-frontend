@@ -28,8 +28,8 @@ export default function Home() {
                   : "flex shadow my-2 bg-sky-50 "
               }
             >
-              <div className="w-full px-4 py-4  flex justify-between capitalize items-center gap-3 flex-wrap h-auto">
-                <div className="w-1/3 md:w-2/3 lg:w-10/12   px-2">
+              <div className="w-full px-4 py-4  grid grid-cols-9 justify-between capitalize items-center gap-3  h-auto">
+                <div className=" col-span-6 xl:col-span-7 w-full max-w-2xl px-2">
                   <div className=" text-justify w-full  overflow-scroll">
                     {poll.pollTitle}
                   </div>
@@ -41,9 +41,9 @@ export default function Home() {
                     </small>
                   </div>
                 </div>
-                <div className=" flex  border-l pl-3 h-full items-center justify-center">
+                <div className=" md:col-start-8 col-span-3 xl:col-span-2 flex-nowrap flex  border-l pl-3 h-full items-center justify-center">
                   <Link
-                    className="cursor-pointer text-blue-500 border rounded-md px-3 py-2 hover:bg-sky-500 hover:text-white  "
+                    className="cursor-pointer text-blue-500 border rounded-md px-3 py-2 hover:bg-sky-500 hover:text-white  whitespace-nowrap  "
                     to={`/polls/${poll.pollId}`}
                   >
                     View poll
