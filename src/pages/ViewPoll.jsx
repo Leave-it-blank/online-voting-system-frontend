@@ -130,11 +130,13 @@ export default function ViewPoll() {
             )}
           </div>
           <header className="px-5 py-4 flex justify-between items-center border-b flex-wrap">
-            <div className="font-bold capitalize flex items-center gap-3">
+            <div className="font-bold capitalize flex items-center gap-3 w-full">
               <span className="text-3xl font-extralight "> Q:</span>{" "}
-              <div className="text-justify font-normal">{poll.pollTitle}</div>
+              <div className="text-justify font-normal  overflow-scroll w-full">
+                {poll.pollTitle}
+              </div>
             </div>
-            <div className="text-gray-500 text-xs w-full text-end">
+            <div className="text-gray-500 text-xs w-full text-end truncate">
               by: {polldata.pollCreator}
             </div>
             {voted && <span>Total Votes: {totalVotes} </span>}
@@ -156,7 +158,9 @@ export default function ViewPoll() {
                   >
                     <div className="w-full px-4 py-4  flex justify-between capitalize items-center gap-3 flex-wrap flex-row">
                       <div className="text-justify w-10/12  ">
-                        <span className="text-lime-900 mr-2">{choice[0]}</span>
+                        <span className="text-lime-900 mr-2">
+                          {choice[0]} {":"}
+                        </span>
                         {choice[1]}
                       </div>
                       <div className=" flex  border-l pl-3 h-full items-center justify-center">

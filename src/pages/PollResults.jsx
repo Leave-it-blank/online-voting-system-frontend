@@ -107,7 +107,9 @@ export default function PollResult() {
                   >
                     <div className="w-full px-4 py-4  flex justify-between capitalize items-center gap-3 flex-wrap">
                       <div className="text-justify w-10/12  ">
-                        <span className="text-lime-900 mr-2">{item[0]}</span>
+                        <span className="text-lime-900 mr-2">
+                          {item[0]} {":"}
+                        </span>
                         {pollData.poll.pollOptions[index][1]}
                       </div>
 

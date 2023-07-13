@@ -24,15 +24,17 @@ export default function Home() {
               key={index}
               className={
                 index % 2 === 0
-                  ? "flex shadow my-2 bg-slate-50 "
+                  ? "flex shadow my-2 bg-slate-50 h-full "
                   : "flex shadow my-2 bg-sky-50 "
               }
             >
-              <div className="w-full px-4 py-4  flex justify-between capitalize items-center gap-3 flex-wrap">
-                <div className="w-10/12   px-2">
-                  <div className=" text-justify w-full">{poll.pollTitle}</div>
+              <div className="w-full px-4 py-4  flex justify-between capitalize items-center gap-3 flex-wrap h-auto">
+                <div className="w-2/3 md:w-10/12   px-2">
+                  <div className=" text-justify w-full  overflow-scroll">
+                    {poll.pollTitle}
+                  </div>
 
-                  <div className="text-gray-400 mx-2 text-end w-full">
+                  <div className="text-gray-400 mx-2 text-end w-full truncate">
                     <small>
                       {"by: "}
                       {poll.pollCreator}
