@@ -29,7 +29,7 @@ export default function Home() {
               }
             >
               <div className="w-full px-4 py-4  flex justify-between capitalize items-center gap-3 flex-wrap h-auto">
-                <div className="w-2/3 md:w-10/12   px-2">
+                <div className="w-1/3 md:w-2/3 lg:w-10/12   px-2">
                   <div className=" text-justify w-full  overflow-scroll">
                     {poll.pollTitle}
                   </div>
